@@ -57,3 +57,10 @@ document.getElementById('searchButton').addEventListener('click', _ => {
     const search = new Search
     search.countryName()
 })
+
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    if(e.key === 'Enter'){
+        const search = new Search
+        search.countryName()
+    }
+})
