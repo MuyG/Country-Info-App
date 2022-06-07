@@ -3,7 +3,7 @@ This web application takes in any country in the world and gives you basic infor
 
 **Link to project:** https://shilohscountryinfo.netlify.app/
 
-![alt tag](https://imgur.com/SCBu5XM)
+![Country App Screenshot](https://imgur.com/SCBu5XM)
 
 ## How It's Made:
 
