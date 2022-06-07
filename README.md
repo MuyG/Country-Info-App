@@ -12,7 +12,6 @@ This web application takes in any country in the world and gives you basic infor
 A simple card-like design inspired from a canva template. The gif behind the search bar is also from canva. The Javascript is fairly simple, it takes in a request from the search bar, sends that request to the REST Countries API and formats the data onto the DOM. The country name also gets sent to the Google Maps API to display the map at the bottom and the Unsplash API to get you a nice picture for the background.
 
 ## Optimizations
-*(optional)*
 
 One optimization I made was adding a error catch for the country name. Originally, whether a proper country was entered or not, the country panel would show up and just display filler text/photos. It did not look good. So I added an if statement to catch the 404 or catch if the input was blank and display a message to please re-enter the countries name. 
 
