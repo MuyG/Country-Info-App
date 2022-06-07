@@ -1,7 +1,10 @@
+if(localStorage.getItem('travel-app-username')) document.getElementById('welcomeText').innerText = `Welcome, ${localStorage.getItem('travel-app-username')}`
+
 //restcountries.com
 class Search {
     constructor(){
         this.input = document.getElementById('searchInput').value
+        this.body = document.querySelector('body')
         this.main = document.querySelector('main')
         this.panel = document.querySelector('.panel')
         this.flag = document.getElementById('flagImg')
@@ -15,10 +18,12 @@ class Search {
         this.map = document.getElementById('map')
     }
 
-    adjustMain = () => {
+    adjustMainAndPanel = () => {
         this.main.style.height = '200px'
         this.main.style.marginTop = '50px'
-        this.panel.style.display = 'block'
+        this.main.style.transform = 'translateY(-350px)'
+        this.panel.style.top = '300px'
+        this.panel.style.opacity = '100%'
     }
 
     countryName = async () => {
@@ -30,10 +35,11 @@ class Search {
             alert(`No country of *${input}* found please try again...`)
             this.main.style.height = '600px'
             this.main.style.marginTop = '0px'
-            this.panel.style.display = 'none'
+            this.panel.style.top = '800px'
+            this.panel.style.opacity = '0%'
         }
         else{
-            this.adjustMain()
+            this.adjustMainAndPanel()
             this.commonName.innerText = data[0].name.common
             this.officialName.innerText = data[0].name.official
             this.timezone.innerText = `Timezone - ${data[0].timezones.join(' | ')}`
@@ -46,11 +52,18 @@ class Search {
         }
     }
     
-    photo = async (search) => {
-        const res = await fetch(`https://serpapi.com/playground?q=${search}&tbm=isch&ijn=0&api_key=0c8d52481e0ab22a804a317ae03c2585e7802740743e3a430a46692c08aa5df4`)
-        const data = await res.json()
-        console.log(data)
-    }
+    // photo = async (search) => {
+    //     const res = await fetch(`https://serpapi.com/playground?q=${search}&tbm=isch&ijn=0&api_key=0c8d52481e0ab22a804a317ae03c2585e7802740743e3a430a46692c08aa5df4`)
+    //     const data = await res.json()
+    //     console.log(data)
+    // }
+}
+
+const welcomeUser = () => {
+    const username = prompt('Identify yourself! (What is your name?)')
+    if(username == null) username = localStorage.getItem('travel-app-username')
+    document.getElementById('welcomeText').innerText = `Welcome, ${username}`
+    localStorage.setItem('travel-app-username', username)
 }
 
 document.getElementById('searchButton').addEventListener('click', _ => {
@@ -64,3 +77,5 @@ document.getElementById('searchInput').addEventListener('keypress', (e) => {
         search.countryName()
     }
 })
+
+document.getElementById('userIcon').addEventListener('click', _ => welcomeUser())
