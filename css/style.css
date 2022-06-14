@@ -149,8 +149,9 @@ main {
     backdrop-filter: blur(10px);
     padding: 25px;
     margin: 0;
-    border-radius: 25px;
-    color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    color: #25211F;
     list-style: none;
   }
 

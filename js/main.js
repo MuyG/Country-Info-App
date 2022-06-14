@@ -40,6 +40,7 @@ class Search {
         }
         else{
             this.adjustMainAndPanel()
+            this.photo()
             this.commonName.innerText = data[0].name.common
             this.officialName.innerText = data[0].name.official
             this.timezone.innerText = `Timezone - ${data[0].timezones.join(' | ')}`
@@ -52,11 +53,13 @@ class Search {
         }
     }
     
-    // photo = async (search) => {
-    //     const res = await fetch(`https://serpapi.com/playground?q=${search}&tbm=isch&ijn=0&api_key=0c8d52481e0ab22a804a317ae03c2585e7802740743e3a430a46692c08aa5df4`)
-    //     const data = await res.json()
-    //     console.log(data)
-    // }
+    photo = async () => {
+        const input = this.input.trim()
+        const res = await fetch(`https://api.unsplash.com/search/photos/?query=${input}&color=white&client_id=U6JGLNzPlvtuyEtMocTqpgobbPViUZUlRhQ5knlqjvE`)
+        const data = await res.json()
+        console.log(data.results[0].urls.regular)
+        this.panel.style.backgroundImage = `url('${data.results[0].urls.regular}')`
+    }
 }
 
 const welcomeUser = () => {
